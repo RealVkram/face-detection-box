@@ -47,6 +47,12 @@ class App extends Component {
     isSignedIn: false
   };
 
+  componentDidMount() {
+    fetch("http://localhost:3001/")
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
+
   calculateFaceLocation = data => {
     const clarifaiFace =
       data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -66,13 +72,9 @@ class App extends Component {
     this.setState({ box: box });
 
     if (this.displayFaceBox) {
-      return this.setState(prevState => (
-        {
-          count: prevState.count + 1
-        }
-      )
-       
-      );
+      return this.setState(prevState => ({
+        count: prevState.count + 1
+      }));
     }
   };
 
@@ -124,7 +126,7 @@ class App extends Component {
               onSubmitDetect={this.onSubmitDetect}
               imageUrl={imageURL}
             />
-            <FaceRecognition box={box} imageURL={this.state.imageURL} />
+            <FaceRecognition box={box} imageURL={imageURL} />
           </div>
         ) : route === "signin" ? (
           <SignIn onRouteChange={this.onRouteChange} />
