@@ -1,22 +1,23 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Courier New','Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Courier New", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%);
+  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
+  /* background-image: url("https://www.commsmea.com/public/styles/full_img/public/images/2017/10/14/9mobile.jpg?itok=B_GNAv2W"); */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
- button {
-   cursor: pointer;
- }
+button {
+  cursor: pointer;
+}
 
- button:hover {
-   color: white;
-    text-decoration: underline;
+button:hover {
+  color: white;
+  text-decoration: underline;
 }
