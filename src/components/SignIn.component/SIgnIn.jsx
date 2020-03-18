@@ -2,34 +2,31 @@ import React from "react";
 
 class SignIn extends React.Component {
   state = {
-    signInEmail: "",
-    signInPassword: ""
+    email: "",
+    password: ""
   };
 
-  onSignInEmailChange = e => {
-    this.setState({
-      signInEmail: e.target.value
-    });
-  };
+  onSignInChange = e => {
+    const { name, value } = e.target;
 
-  onSignInPasswordChange = e => {
     this.setState({
-      signInPassword: e.target.value
+      [name]: value  
     });
   };
 
   onSubmitSignIn = () => {
     fetch("http://localhost:3001/signin", {
-      method: "post",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: this.state.signInEmail,
-        password: this.state.signInPassword
+        method: "post",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password
       })
     })
       .then(response => response.json())
-      .then(data => {
-        if (data === "succesful") {
+      .then((data) => {
+          if (data.id) {
+          this.props.loadUser(data)
           this.props.onRouteChange("home");
         }
       });
@@ -51,9 +48,9 @@ class SignIn extends React.Component {
                 <input
                   className="border-4 border-blue-500 pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="email"
-                  name="email-address"
+                  name="email"
                   id="email-address"
-                  onChange={this.onSignInEmailChange}
+                  onChange={this.onSignInChange}
                 />
               </div>
               <div className="mv3">
@@ -65,7 +62,7 @@ class SignIn extends React.Component {
                   type="password"
                   name="password"
                   id="password"
-                  onChange={this.onSignInPasswordChange}
+                  onChange={this.onSignInChange }
                 />
               </div>
             </fieldset>
