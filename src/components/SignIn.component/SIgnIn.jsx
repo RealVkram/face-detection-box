@@ -10,23 +10,23 @@ class SignIn extends React.Component {
     const { name, value } = e.target;
 
     this.setState({
-      [name]: value  
+      [name]: value
     });
   };
 
   onSubmitSignIn = () => {
     fetch("http://localhost:3001/signin", {
-        method: "post",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
+      method: "post",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
       })
     })
       .then(response => response.json())
-      .then((data) => {
-          if (data.id) {
-          this.props.loadUser(data)
+      .then(data => {
+        if (data.id) {
+          this.props.loadUser(data);
           this.props.onRouteChange("home");
         }
       });
@@ -62,7 +62,7 @@ class SignIn extends React.Component {
                   type="password"
                   name="password"
                   id="password"
-                  onChange={this.onSignInChange }
+                  onChange={this.onSignInChange}
                 />
               </div>
             </fieldset>

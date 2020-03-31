@@ -2,29 +2,45 @@ import React from "react";
 
 class Register extends React.Component {
   state = {
-    registerEmail: "",
-    registerPassword: "",
-    registerName: ""
+    email: "",
+    password: "",
+    name: ""
   };
 
-  onChangeItems = e => {
-    const { name, value } = e.target;
+  onChangeName = e => {
+    const { value } = e.target;
 
     this.setState({
-      [name]: value
+      name: value
     });
   };
 
-  onHandleRegisterSubmit = () => {       
-    const {registerEmail, registerPassword, registerName } = this.state;
+  onChangeEmail = e => {
+    const { value } = e.target;
+
+    this.setState({
+      email: value
+    });
+  };
+
+  onChangePassword = e => {
+    const { value } = e.target;
+
+    this.setState({
+      password: value
+    });
+  };
+
+  onHandleRegisterSubmit = () => {
+    const { email, password, name } = this.state;
 
     fetch("http://localhost:3001/register", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        email: registerEmail,
-        password: registerPassword,
-        name: registerName
+        email: email,
+        password: password,
+        name: name
       })
     })
       .then(response => response.json())
@@ -37,6 +53,7 @@ class Register extends React.Component {
   };
 
   render() {
+    // const { registerEmail, registerPassword, registerName } = this.state;
     return (
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
@@ -52,7 +69,7 @@ class Register extends React.Component {
                   type="text"
                   name="name"
                   id="name"
-                  onChange={this.onChangeItems}
+                  onChange={this.onChangeName}
                 />
               </div>
               <div className="mt3">
@@ -64,7 +81,7 @@ class Register extends React.Component {
                   type="email"
                   name="email-address"
                   id="email-address"
-                  onChange={this.onChangeItems}
+                  onChange={this.onChangeEmail}
                 />
               </div>
               <div className="mv3">
@@ -76,7 +93,7 @@ class Register extends React.Component {
                   type="password"
                   name="password"
                   id="password"
-                  onChange={this.onChangeItems}
+                  onChange={this.onChangePassword}
                 />
               </div>
             </fieldset>
