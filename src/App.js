@@ -103,13 +103,7 @@ class App extends Component {
           })
             .then(response => response.json())
             .then(count => {
-              if (this.calculateFaceLocation(response)) {
-                this.setState(
-                  Object.assign(this.state.user, { entries: count })
-                );
-              } else {
-                return null;
-              }
+              this.setState(Object.assign(this.state.user, { entries: count }));
             })
             .catch(console.log);
         }
